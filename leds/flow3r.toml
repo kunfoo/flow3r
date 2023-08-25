@@ -1,0 +1,30 @@
+[app]
+# The name of your app as displayed in the menu
+name = "LED Playground"
+
+# The submenu where your app should appear
+menu = "Apps"
+
+[entry]
+# The name of your entry point `Application` class
+class = "LEDs"
+
+[metadata]
+# Your nickname.  Must be at most 32 characters!
+author = "kunfoo"
+
+# License of your app as an SPDX identifier: <https://spdx.org/licenses/>
+license = "MIT"
+
+# URL to the repository of your app.
+url = "https://git.flow3r.garden/kunfoo/leds"
+
+# Description of your app.  Maximum 140 characters!
+description = "Play around with LEDs."
+
+# Version number of your app.  If you push a commit where this number is
+# increased, we interpret this as a new version being released.
+#
+# Version number must be an integer!
+version = 1
+
