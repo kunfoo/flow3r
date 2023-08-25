@@ -17,7 +17,7 @@ author = "kunfoo"
 license = "MIT"
 
 # URL to the repository of your app.
-url = "https://git.flow3r.garden/kunfoo/leds"
+# url = "https://git.flow3r.garden/kunfoo/leds"
 
 # Description of your app.  Maximum 140 characters!
 description = "Play around with LEDs."
