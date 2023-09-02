@@ -2,6 +2,7 @@ from st3m.application import Application, ApplicationContext
 from st3m.ui.colours import RED, GO_GREEN, BLACK
 import st3m.run
 import leds
+from math import pi
 
 """
 see python_payload/st3m/ui/colours.py for pre-definec colors
@@ -16,6 +17,7 @@ class FontSwitcher(Application):
         self.font = ""
         self.init_done = False
         self.fonts = []
+        self.rotate = False
 
         leds.set_all_rgb(*GO_GREEN)
         # leds.set_all_rgb(255, 0, 0)
@@ -47,8 +49,12 @@ class FontSwitcher(Application):
         ctx.font_size = 30
         ctx.font = self.font
         ctx.move_to(0, 0)
-        ctx.save()
-        ctx.text(self.font)
+        if self.rotate: ctx.rotate(pi)
+        if self.font_idx == 7:
+            ctx.text("\ue8d0 \ue8d0 \ue8d0 \ue8d0 \ue8d0")
+            # ctx.text("\ue147 \ue1c2 \ue24e")
+        else:
+            ctx.text(self.font)
 
 
     def think(self, ins: InputState, delta_ms: int) -> None:
@@ -59,9 +65,11 @@ class FontSwitcher(Application):
             self.delta_ms = 0
             if ins.buttons.app == ins.buttons.PRESSED_RIGHT:
                 self.font_idx = (self.font_idx + 1) % len(self.fonts)
-            if ins.buttons.app == ins.buttons.PRESSED_LEFT:
+            elif ins.buttons.app == ins.buttons.PRESSED_LEFT:
                 self.font_idx = self.font_idx - 1
                 if self.font_idx < 0: self.font_idx = len(self.fonts) - 1
+            elif ins.buttons.app == ins.buttons.PRESSED_DOWN:
+                self.rotate = not self.rotate
 
             self.font = self.fonts[self.font_idx]
 
